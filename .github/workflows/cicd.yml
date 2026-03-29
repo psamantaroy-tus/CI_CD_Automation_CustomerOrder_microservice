@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Testing after added secrets for docker deplyment
+name: CI/CD Pipeline Testing after added secrets for docker deployment
 
 # ----------------------------
 # 1. TRIGGER
