@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for customer-order-api
+name: CI/CD Pipeline Testing after added secrets for docker deplyment
 
 # ----------------------------
 # 1. TRIGGER
