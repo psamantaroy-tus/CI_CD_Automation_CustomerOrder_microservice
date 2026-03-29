@@ -1,0 +1,67 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# IntelliJ (if ever used)
+.idea/
+*.iml
+*.iws
+out/
+
+# VS Code (if ever used)
+.vscode/
+
+# H2 database files (if using file-based, not in-memory)
+*.mv.db
+*.h2.db
+
+# Spring Boot
+.spring-boot-devtools.properties
+/.apt_generated_tests/
