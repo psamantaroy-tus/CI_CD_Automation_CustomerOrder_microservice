@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-order-api
+  labels:
+    app: customer-order-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: customer-order-api
+  template:
+    metadata:
+      labels:
+        app: customer-order-api
+    spec:
+      containers:
+        - name: customer-order-api
+          image: DOCKER_USERNAME/customer-order-api:latest
+          ports:
+            - containerPort: 9090
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+            initialDelaySeconds: 60
+            periodSeconds: 15
