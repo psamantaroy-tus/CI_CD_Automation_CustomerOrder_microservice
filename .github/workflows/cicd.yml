@@ -191,6 +191,12 @@ jobs:
         with:
           node_image: kindest/node:v1.29.2
 
+      - name: Pull Docker image from registry
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
+
+      - name: Load image into kind cluster
+        run: kind load docker-image ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
+
       - name: Substitute Docker username in deployment manifest
         run: |
           sed -i "s|DOCKER_USERNAME|${{ secrets.DOCKER_USERNAME }}|g" k8s/deployment.yaml
@@ -200,11 +206,8 @@ jobs:
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
-      - name: Rollout restart to pull latest image
-        run: kubectl rollout restart deployment/customer-order-api
-
       - name: Wait for rollout to complete
-        run: kubectl rollout status deployment/customer-order-api --timeout=120s
+        run: kubectl rollout status deployment/customer-order-api --timeout=180s
 
       - name: Deployment complete
         run: echo "Deployment complete, great Job PRIYANKA!"
