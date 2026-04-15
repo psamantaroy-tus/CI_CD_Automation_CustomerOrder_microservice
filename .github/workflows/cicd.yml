@@ -191,8 +191,8 @@ jobs:
         with:
           node_image: kindest/node:v1.29.2
 
-      - name: Build Docker image locally
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest .
+      - name: Pull Docker image from registry
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
 
       - name: Load image into kind cluster
         run: kind load docker-image ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
