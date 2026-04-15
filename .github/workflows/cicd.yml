@@ -198,6 +198,8 @@ jobs:
 
       - name: Create kind cluster
         uses: helm/kind-action@v1
+        with:
+          node_image: kindest/node:v1.29.2
 
       - name: Build Docker image locally
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest .
