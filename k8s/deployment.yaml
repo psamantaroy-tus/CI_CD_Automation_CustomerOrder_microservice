@@ -17,7 +17,7 @@ spec:
       containers:
         - name: customer-order-api
           image: DOCKER_USERNAME/customer-order-api:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
           resources:
