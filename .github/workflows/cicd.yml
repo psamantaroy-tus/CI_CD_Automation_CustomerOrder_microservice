@@ -186,8 +186,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build JAR
+        run: mvn clean package -DskipTests
+
       - name: Create kind cluster
         uses: helm/kind-action@v1
+
+      - name: Build Docker image locally
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest .
+
+      - name: Load image into kind cluster
+        run: kind load docker-image ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
 
       - name: Substitute Docker username in deployment manifest
         run: |
@@ -198,11 +214,8 @@ jobs:
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
-      - name: Rollout restart to pull latest image
-        run: kubectl rollout restart deployment/customer-order-api
-
       - name: Wait for rollout to complete
-        run: kubectl rollout status deployment/customer-order-api --timeout=120s
+        run: kubectl rollout status deployment/customer-order-api --timeout=180s
 
       - name: Deployment complete
         run: echo "Deployment complete, great Job PRIYANKA!"
