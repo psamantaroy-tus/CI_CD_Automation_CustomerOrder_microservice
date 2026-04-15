@@ -216,6 +216,16 @@ jobs:
       - name: Wait for rollout to complete
         run: kubectl rollout status deployment/customer-order-api --timeout=180s
 
+      - name: Debug pod status on failure
+        if: failure()
+        run: |
+          echo "=== Pod Status ==="
+          kubectl get pods -o wide
+          echo "=== Pod Describe ==="
+          kubectl describe pods -l app=customer-order-api
+          echo "=== Pod Logs ==="
+          kubectl logs -l app=customer-order-api --tail=100 || true
+
       - name: Deployment complete
         run: echo "Deployment complete, great Job PRIYANKA!"
 
