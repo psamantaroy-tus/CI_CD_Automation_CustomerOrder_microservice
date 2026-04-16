@@ -234,6 +234,7 @@ jobs:
   # ============================================================
   deploy-local:
     name: Deploy to Local Docker Desktop
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: self-hosted
     needs: docker
 
