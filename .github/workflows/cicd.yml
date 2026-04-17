@@ -250,9 +250,13 @@ jobs:
 
       - name: Stop and remove old container (if exists)
         run: |
-          docker stop customer-order-api 2>$null
-          docker rm customer-order-api 2>$null
-          $LASTEXITCODE = 0
+          docker container inspect customer-order-api *> $null
+          if ($LASTEXITCODE -eq 0) {
+            docker stop customer-order-api
+            docker rm customer-order-api
+          } else {
+            Write-Host "Container customer-order-api does not exist; skipping stop/remove."
+          }
         shell: powershell
 
       - name: Run new container
