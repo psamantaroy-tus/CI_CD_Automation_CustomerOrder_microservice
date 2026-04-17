@@ -252,6 +252,7 @@ jobs:
         run: |
           docker stop customer-order-api 2>$null
           docker rm customer-order-api 2>$null
+          $LASTEXITCODE = 0
         shell: powershell
 
       - name: Run new container
