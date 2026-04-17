@@ -250,7 +250,7 @@ jobs:
 
       - name: Stop and remove old container (if exists)
         run: |
-          docker container inspect customer-order-api > $null 2>&1
+          docker container inspect customer-order-api 2>&1 | Out-Null
           if ($LASTEXITCODE -eq 0) {
             docker stop customer-order-api
             docker rm customer-order-api
