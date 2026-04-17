@@ -135,7 +135,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=psamantaroy-tus
+          -Dsonar.projectKey=psamantaroy-tus_CI_CD_Automation_CustomerOrder_microservice
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.qualitygate.wait=true

@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<sonar.projectKey>psamantaroy-tus</sonar.projectKey>
+		<sonar.projectKey>psamantaroy-tus_CI_CD_Automation_CustomerOrder_microservice</sonar.projectKey>
 		<sonar.organization>${env.SONAR_ORG}</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
