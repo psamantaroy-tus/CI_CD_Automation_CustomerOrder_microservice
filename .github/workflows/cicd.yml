@@ -216,4 +216,4 @@ jobs:
         run: docker ps --filter "name=customer-order-api"
 
       - name: Local deployment complete
-        run: echo "Local Docker Desktop deployment complete Priyanka!"
+        run: echo "Local Docker Desktop deployment complete Priyanka DEMO CICD PIPELINE!"
