@@ -175,7 +175,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
 
   # ============================================================
-  # 7. DEPLOY TO KUBERNETES — DISABLED
+  # 7. DEPLOY TO KUBERNETES 
   # ============================================================
   # deploy:
   #   name: Deploy to Kubernetes
