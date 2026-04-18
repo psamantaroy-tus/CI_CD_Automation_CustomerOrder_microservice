@@ -175,62 +175,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
 
   # ============================================================
-  # 7. DEPLOY TO KUBERNETES 
-  # ============================================================
-  # deploy:
-  #   name: Deploy to Kubernetes
-  #   runs-on: ubuntu-latest
-  #   needs: docker
-  #
-  #   steps:
-  #     - name: Checkout Repository
-  #       uses: actions/checkout@v4
-  #
-  #     - name: Create kind cluster
-  #       uses: helm/kind-action@v1.12.0
-  #       with:
-  #         cluster_name: kind
-  #         node_image: kindest/node:v1.29.2
-  #         wait: 60s
-  #
-  #     - name: Verify cluster is running
-  #       run: |
-  #         kubectl cluster-info
-  #         kubectl get nodes
-  #
-  #     - name: Pull Docker image from registry
-  #       run: docker pull ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest
-  #
-  #     - name: Load image into kind cluster
-  #       run: kind load docker-image ${{ secrets.DOCKER_USERNAME }}/customer-order-api:latest --name kind
-  #
-  #     - name: Substitute Docker username in deployment manifest
-  #       run: |
-  #         sed -i "s|DOCKER_USERNAME|${{ secrets.DOCKER_USERNAME }}|g" k8s/deployment.yaml
-  #
-  #     - name: Apply Kubernetes manifests
-  #       run: |
-  #         kubectl apply -f k8s/deployment.yaml
-  #         kubectl apply -f k8s/service.yaml
-  #
-  #     - name: Wait for rollout to complete
-  #       run: kubectl rollout status deployment/customer-order-api --timeout=180s
-  #
-  #     - name: Debug pod status on failure
-  #       if: failure()
-  #       run: |
-  #         echo "=== Pod Status ==="
-  #         kubectl get pods -o wide
-  #         echo "=== Pod Describe ==="
-  #         kubectl describe pods -l app=customer-order-api
-  #         echo "=== Pod Logs ==="
-  #         kubectl logs -l app=customer-order-api --tail=100 || true
-  #
-  #     - name: Deployment complete
-  #       run: echo "Deployment complete, great Job PRIYANKA!"
-
-  # ============================================================
-  # 8. DEPLOY TO LOCAL DOCKER DESKTOP
+  # 7. DEPLOY TO LOCAL DOCKER DESKTOP
   # ============================================================
   deploy-local:
     name: Deploy to Local Docker Desktop
